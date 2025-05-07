@@ -11,6 +11,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          path: '.'
+
+      - name: Setup Terraform
+        uses: hashicorp/terraform-github-actions@v1.2.0
+        with:
+          terraform_version: '1.1.9'
 
       - name: Terraform Init
         run: terraform init
@@ -21,9 +28,7 @@ jobs:
       - name: Aprovação manual
         uses: actions/manual-approval@v1
         with:
-          approver: ${{ github.actor }} # Você mesmo será o aprovador
+          approver: ${{ github.actor }}
 
       - name: Terraform Apply
-        run: terraform apply
-        when: manual # Executará apenas se a aprovação for concedida
-      
+        run: terraform applys
