@@ -1,0 +1,29 @@
+name: Terraform Plan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Aprovação manual
+        uses: actions/manual-approval@v1
+        with:
+          approver: ${{ github.actor }} # Você mesmo será o aprovador
+
+      - name: Terraform Apply
+        run: terraform apply
+        when: manual # Executará apenas se a aprovação for concedida
+      
