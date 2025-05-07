@@ -31,4 +31,7 @@ jobs:
           approver: ${{ github.actor }}
 
       - name: Terraform Apply
-        run: terraform apply
+        run: terraform apply -auto-approve
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
