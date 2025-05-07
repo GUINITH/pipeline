@@ -15,7 +15,7 @@ jobs:
           path: '.'
 
       - name: Setup Terraform
-        uses: hashicorp/terraform-github-actions@v1.2.0
+        uses: hashicorp/terraform-github-actions@v2.0.0
         with:
           terraform_version: '1.1.9'
 
@@ -31,4 +31,4 @@ jobs:
           approver: ${{ github.actor }}
 
       - name: Terraform Apply
-        run: terraform applys
+        run: terraform apply
